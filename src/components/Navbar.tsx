@@ -13,11 +13,11 @@ export function Navbar() {
   return (
     <header className="border-b border-slate-200 bg-white">
       <nav className="mx-auto flex max-w-4xl items-center justify-between px-4 py-3">
-        <Link to="/" className="text-lg font-semibold text-slate-900">
+        <Link to="/eventos" className="text-lg font-semibold text-slate-900">
           UCD
         </Link>
         <div className="flex items-center gap-4 text-sm">
-          <Link to="/" className="text-slate-600 hover:text-slate-900">
+          <Link to="/eventos" className="text-slate-600 hover:text-slate-900">
             Eventos
           </Link>
           {user?.role === 'ATHLETE' && (

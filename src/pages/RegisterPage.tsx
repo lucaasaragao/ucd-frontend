@@ -19,7 +19,7 @@ export function RegisterPage() {
     setLoading(true)
     try {
       await register({ name, email, password, role })
-      navigate('/')
+      navigate('/eventos')
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Falha ao criar conta')
     } finally {

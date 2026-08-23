@@ -1,6 +1,16 @@
 @import "tailwindcss";
 
+@theme {
+  --font-head: 'Barlow Condensed', sans-serif;
+  --font-body: 'DM Sans', system-ui, sans-serif;
+  --color-brand-blue: #1b4fd8;
+  --color-brand-blue-dark: #0d2e8a;
+  --color-brand-yellow: #ffd600;
+}
+
 body {
   margin: 0;
   color-scheme: light;
+  font-family: var(--font-body);
 }
+

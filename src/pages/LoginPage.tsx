@@ -16,7 +16,7 @@ export function LoginPage() {
     setLoading(true)
     try {
       await login(email, password)
-      navigate('/')
+      navigate('/eventos')
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Falha ao entrar')
     } finally {
