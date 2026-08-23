@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState, type ReactNode } from 'react'
 import { Link } from 'react-router-dom'
 import { listEvents } from '../api/events'
+import logo from '../assets/ucd-runner-logo.jpg'
 import { Reveal } from '../components/Reveal'
 import { useAuth } from '../context/AuthContext'
 import { useCountdown } from '../hooks/useCountdown'
@@ -46,7 +47,8 @@ export function LandingPage() {
       {/* NAVBAR */}
       <header className="fixed inset-x-0 top-0 z-50 h-[70px] bg-brand-blue-dark">
         <div className="mx-auto flex h-full max-w-6xl items-center justify-between px-6">
-          <Link to="/" className="font-head text-2xl font-black uppercase tracking-wide text-white">
+          <Link to="/" className="font-head flex items-center gap-2 text-2xl font-black uppercase tracking-wide text-white">
+            <img src={logo} alt="UCD Runner" className="h-10 w-10 rounded-full" />
             UCD <span className="text-brand-yellow">RUNNER</span>
           </Link>
           <nav className="hidden items-center gap-8 text-sm font-medium text-white/80 md:flex">
@@ -64,7 +66,7 @@ export function LandingPage() {
             {user ? (
               <Link
                 to="/eventos"
-                className="font-head rounded-md bg-brand-yellow px-5 py-2 text-sm font-bold uppercase tracking-wide text-brand-blue-dark hover:bg-yellow-400"
+                className="font-head rounded-md bg-brand-yellow px-5 py-2 text-sm font-bold uppercase tracking-wide text-brand-blue-dark hover:bg-brand-yellow-hover"
               >
                 Ir para a plataforma
               </Link>
@@ -75,7 +77,7 @@ export function LandingPage() {
                 </Link>
                 <Link
                   to="/registrar"
-                  className="font-head rounded-md bg-brand-yellow px-5 py-2 text-sm font-bold uppercase tracking-wide text-brand-blue-dark hover:bg-yellow-400"
+                  className="font-head rounded-md bg-brand-yellow px-5 py-2 text-sm font-bold uppercase tracking-wide text-brand-blue-dark hover:bg-brand-yellow-hover"
                 >
                   Criar conta
                 </Link>
@@ -115,7 +117,7 @@ export function LandingPage() {
           <Reveal delay={400} className="mt-10 flex flex-wrap items-center gap-4">
             <a
               href="#eventos"
-              className="font-head inline-flex items-center gap-2 rounded-lg bg-brand-yellow px-8 py-4 text-lg font-bold uppercase tracking-wide text-brand-blue-dark hover:bg-yellow-400"
+              className="font-head inline-flex items-center gap-2 rounded-lg bg-brand-yellow px-8 py-4 text-lg font-bold uppercase tracking-wide text-brand-blue-dark hover:bg-brand-yellow-hover"
             >
               Ver eventos abertos
             </a>
@@ -265,7 +267,7 @@ export function LandingPage() {
             <p className="mt-2 text-white/75">Encontre eventos, inscreva-se em uma categoria e acompanhe seu pagamento e resultado.</p>
             <Link
               to="/registrar"
-              className="font-head mt-6 inline-block rounded-lg bg-brand-yellow px-6 py-3 text-sm font-bold uppercase tracking-wide text-brand-blue-dark hover:bg-yellow-400"
+              className="font-head mt-6 inline-block rounded-lg bg-brand-yellow px-6 py-3 text-sm font-bold uppercase tracking-wide text-brand-blue-dark hover:bg-brand-yellow-hover"
             >
               Criar conta de atleta
             </Link>
@@ -295,7 +297,7 @@ export function LandingPage() {
             <div className="mt-8 flex flex-wrap justify-center gap-4">
               <Link
                 to="/registrar"
-                className="font-head rounded-lg bg-brand-yellow px-8 py-4 text-lg font-bold uppercase tracking-wide text-brand-blue-dark hover:bg-yellow-400"
+                className="font-head rounded-lg bg-brand-yellow px-8 py-4 text-lg font-bold uppercase tracking-wide text-brand-blue-dark hover:bg-brand-yellow-hover"
               >
                 Criar conta →
               </Link>
@@ -314,7 +316,8 @@ export function LandingPage() {
       <footer className="bg-brand-blue-dark py-12 text-white/60">
         <div className="mx-auto max-w-6xl px-6">
           <div className="flex flex-wrap items-center justify-between gap-4 border-b border-white/10 pb-8">
-            <span className="font-head text-xl font-black uppercase text-white">
+            <span className="font-head flex items-center gap-2 text-xl font-black uppercase text-white">
+              <img src={logo} alt="UCD Runner" className="h-8 w-8 rounded-full" />
               UCD <span className="text-brand-yellow">RUNNER</span>
             </span>
             <nav className="flex flex-wrap gap-6 text-sm">

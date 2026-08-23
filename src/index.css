@@ -3,9 +3,11 @@
 @theme {
   --font-head: 'Barlow Condensed', sans-serif;
   --font-body: 'DM Sans', system-ui, sans-serif;
-  --color-brand-blue: #1b4fd8;
-  --color-brand-blue-dark: #0d2e8a;
-  --color-brand-yellow: #ffd600;
+  /* Paleta extraída do logo real de @ucd.runner (Instagram) */
+  --color-brand-blue: #0d55c4;
+  --color-brand-blue-dark: #0a2a6b;
+  --color-brand-yellow: #f0b90d;
+  --color-brand-yellow-hover: #d9a70b;
 }
 
 body {
