@@ -21,7 +21,7 @@ export function Navbar() {
   return (
     <header className="border-b border-slate-200 bg-white">
       <nav className="mx-auto flex max-w-4xl items-center justify-between px-4 py-3">
-        <Link to="/eventos" className="font-head flex items-center gap-2 text-lg font-bold text-brand-blue-dark">
+        <Link to="/" className="font-head flex items-center gap-2 text-lg font-bold text-brand-blue-dark">
           <img src={logo} alt="UCD Runner" className="h-8 w-8 rounded-full" />
           UCD
         </Link>
