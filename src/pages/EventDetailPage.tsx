@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { getEvent } from '../api/events'
 import { createRegistration } from '../api/registrations'
+import { Button } from '../components/ui'
 import { useAuth } from '../context/AuthContext'
 import type { Event } from '../types'
 
@@ -35,24 +36,38 @@ export function EventDetailPage() {
     }
   }
 
-  if (loading) return <p className="mx-auto mt-16 max-w-4xl px-4 text-slate-500">Carregando...</p>
-  if (!event) return <p className="mx-auto mt-16 max-w-4xl px-4 text-red-600">{error ?? 'Evento não encontrado'}</p>
+  if (loading)
+    return (
+      <p aria-busy="true" className="mx-auto mt-16 max-w-4xl px-4 text-slate-500">
+        Carregando...
+      </p>
+    )
+  if (!event)
+    return (
+      <p role="alert" className="mx-auto mt-16 max-w-4xl px-4 text-red-600">
+        {error ?? 'Evento não encontrado'}
+      </p>
+    )
 
   return (
     <div className="mx-auto mt-10 max-w-4xl px-4">
-      <h1 className="text-2xl font-semibold text-slate-900">{event.name}</h1>
+      <h1 className="font-head text-3xl font-bold text-brand-blue-dark">{event.name}</h1>
       <p className="mt-1 text-sm text-slate-500">
         {event.location} · {event.city}/{event.state} · {event.eventDate}
       </p>
       <p className="mt-4 text-slate-700">{event.description}</p>
 
-      <h2 className="mt-8 mb-3 text-lg font-medium text-slate-900">Categorias</h2>
-      {error && <p className="mb-3 text-sm text-red-600">{error}</p>}
+      <h2 className="font-head mb-3 mt-8 text-xl font-bold text-brand-blue-dark">Categorias</h2>
+      {error && (
+        <p role="alert" className="mb-3 text-sm text-red-600">
+          {error}
+        </p>
+      )}
       <ul className="flex flex-col gap-3">
         {event.categories.map((category) => (
           <li
             key={category.id}
-            className="flex items-center justify-between rounded-lg border border-slate-200 p-4"
+            className="flex items-center justify-between gap-4 rounded-lg border border-slate-200 p-4"
           >
             <div>
               <p className="font-medium text-slate-900">{category.name}</p>
@@ -62,19 +77,19 @@ export function EventDetailPage() {
               </p>
             </div>
             {user?.role === 'ATHLETE' ? (
-              <button
+              <Button
                 onClick={() => handleRegister(category.id)}
                 disabled={!category.hasAvailableSlots || registering === category.id}
-                className="rounded-md bg-slate-900 px-4 py-2 text-sm font-medium text-white hover:bg-slate-700 disabled:opacity-50"
+                className="shrink-0"
               >
                 {registering === category.id
                   ? 'Inscrevendo...'
                   : category.hasAvailableSlots
                     ? 'Inscrever-se'
                     : 'Esgotado'}
-              </button>
+              </Button>
             ) : !user ? (
-              <span className="text-sm text-slate-400">Entre como atleta para se inscrever</span>
+              <span className="shrink-0 text-sm text-slate-400">Entre como atleta para se inscrever</span>
             ) : null}
           </li>
         ))}

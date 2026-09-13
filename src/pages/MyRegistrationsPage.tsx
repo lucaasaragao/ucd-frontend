@@ -1,13 +1,27 @@
 import { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
 import { listMyRegistrations } from '../api/registrations'
 import { listMyResults } from '../api/results'
 import { confirmPayment, rejectPayment } from '../api/payments'
-import type { RaceResult, Registration } from '../types'
+import { Button } from '../components/ui'
+import type { PaymentStatus, RaceResult, Registration } from '../types'
 
 const STATUS_LABEL: Record<Registration['status'], string> = {
   PENDING_PAYMENT: 'Aguardando pagamento',
   CONFIRMED: 'Confirmada',
   CANCELED: 'Cancelada',
+}
+
+const STATUS_BADGE: Record<Registration['status'], string> = {
+  PENDING_PAYMENT: 'bg-amber-100 text-amber-800',
+  CONFIRMED: 'bg-emerald-100 text-emerald-800',
+  CANCELED: 'bg-red-100 text-red-800',
+}
+
+const PAYMENT_BADGE: Record<PaymentStatus, string> = {
+  PENDING: 'bg-amber-100 text-amber-800',
+  APPROVED: 'bg-emerald-100 text-emerald-800',
+  REJECTED: 'bg-red-100 text-red-800',
 }
 
 export function MyRegistrationsPage() {
@@ -58,14 +72,28 @@ export function MyRegistrationsPage() {
     }
   }
 
-  if (loading) return <p className="mx-auto mt-16 max-w-4xl px-4 text-slate-500">Carregando...</p>
+  if (loading)
+    return (
+      <p aria-busy="true" className="mx-auto mt-16 max-w-4xl px-4 text-slate-500">
+        Carregando...
+      </p>
+    )
 
   return (
     <div className="mx-auto mt-10 max-w-4xl px-4">
-      <h1 className="mb-6 text-2xl font-semibold text-slate-900">Minhas inscrições</h1>
-      {error && <p className="mb-4 text-sm text-red-600">{error}</p>}
+      <h1 className="font-head mb-6 text-3xl font-bold text-brand-blue-dark">Minhas inscrições</h1>
+      {error && (
+        <p role="alert" className="mb-4 text-sm text-red-600">
+          {error}
+        </p>
+      )}
       {registrations.length === 0 ? (
-        <p className="text-slate-500">Você ainda não se inscreveu em nenhum evento.</p>
+        <p className="text-slate-500">
+          Você ainda não se inscreveu em nenhum evento.{' '}
+          <Link to="/eventos" className="font-medium text-brand-blue hover:underline">
+            Ver eventos abertos
+          </Link>
+        </p>
       ) : (
         <ul className="flex flex-col gap-4">
           {registrations.map((registration) => {
@@ -74,39 +102,46 @@ export function MyRegistrationsPage() {
 
             return (
               <li key={registration.id} className="rounded-lg border border-slate-200 p-4">
-                <div className="flex items-center justify-between">
+                <div className="flex items-center justify-between gap-2">
                   <div>
                     <p className="font-medium text-slate-900">{registration.eventName}</p>
                     <p className="text-sm text-slate-500">
                       {registration.categoryName} · Código {registration.registrationCode}
                     </p>
                   </div>
-                  <span className="rounded-full bg-slate-100 px-3 py-1 text-xs font-medium text-slate-700">
+                  <span
+                    className={`shrink-0 rounded-full px-3 py-1 text-xs font-semibold ${STATUS_BADGE[registration.status]}`}
+                  >
                     {STATUS_LABEL[registration.status]}
                   </span>
                 </div>
 
                 {payment && (
-                  <div className="mt-3 flex items-center justify-between rounded-md bg-slate-50 px-3 py-2 text-sm">
-                    <span className="text-slate-600">
-                      Pagamento: R$ {payment.amount.toFixed(2)} · {payment.status}
+                  <div className="mt-3 flex flex-wrap items-center justify-between gap-2 rounded-md bg-slate-50 px-3 py-2 text-sm">
+                    <span className="flex items-center gap-2 text-slate-600">
+                      Pagamento: R$ {payment.amount.toFixed(2)}
+                      <span className={`rounded-full px-2 py-0.5 text-xs font-semibold ${PAYMENT_BADGE[payment.status]}`}>
+                        {payment.status}
+                      </span>
                     </span>
                     {payment.status === 'PENDING' && (
                       <div className="flex gap-2">
-                        <button
+                        <Button
+                          variant="success"
                           onClick={() => handleConfirm(payment.id)}
                           disabled={busyPaymentId === payment.id}
-                          className="rounded-md bg-emerald-600 px-3 py-1 text-xs font-medium text-white hover:bg-emerald-500 disabled:opacity-50"
+                          className="px-3 py-1.5 text-xs"
                         >
                           Simular pagamento aprovado
-                        </button>
-                        <button
+                        </Button>
+                        <Button
+                          variant="danger"
                           onClick={() => handleReject(payment.id)}
                           disabled={busyPaymentId === payment.id}
-                          className="rounded-md border border-slate-300 px-3 py-1 text-xs font-medium text-slate-700 hover:bg-slate-100 disabled:opacity-50"
+                          className="px-3 py-1.5 text-xs"
                         >
                           Rejeitar
-                        </button>
+                        </Button>
                       </div>
                     )}
                   </div>
