@@ -6,6 +6,7 @@ import { EventsPage } from './pages/EventsPage'
 import { LandingPage } from './pages/LandingPage'
 import { LoginPage } from './pages/LoginPage'
 import { MyRegistrationsPage } from './pages/MyRegistrationsPage'
+import { ProfilePage } from './pages/ProfilePage'
 import { RegisterPage } from './pages/RegisterPage'
 
 function App() {
@@ -27,6 +28,14 @@ function App() {
             element={
               <ProtectedRoute requiredRole="ATHLETE">
                 <MyRegistrationsPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/perfil"
+            element={
+              <ProtectedRoute>
+                <ProfilePage />
               </ProtectedRoute>
             }
           />

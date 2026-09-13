@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { listMyRegistrations } from '../api/registrations'
 import { listMyResults } from '../api/results'
 import { confirmPayment, rejectPayment } from '../api/payments'
-import { Button } from '../components/ui'
+import { Button, StatTile } from '../components/ui'
 import type { PaymentStatus, RaceResult, Registration } from '../types'
 
 const STATUS_LABEL: Record<Registration['status'], string> = {
@@ -79,9 +79,22 @@ export function MyRegistrationsPage() {
       </p>
     )
 
+  const confirmedCount = registrations.filter((r) => r.status === 'CONFIRMED').length
+  const pendingCount = registrations.filter((r) => r.status === 'PENDING_PAYMENT').length
+
   return (
-    <div className="mx-auto mt-10 max-w-4xl px-4">
+    <div className="mx-auto mt-10 max-w-4xl px-4 pb-16">
       <h1 className="font-head mb-6 text-3xl font-bold text-brand-blue-dark">Minhas inscrições</h1>
+
+      {registrations.length > 0 && (
+        <div className="mb-8 grid grid-cols-2 gap-4 sm:grid-cols-4">
+          <StatTile label="Inscrições" value={registrations.length} />
+          <StatTile label="Confirmadas" value={confirmedCount} accent="text-emerald-600" />
+          <StatTile label="Aguardando pagamento" value={pendingCount} accent="text-amber-600" />
+          <StatTile label="Resultados" value={results.length} accent="text-brand-blue" />
+        </div>
+      )}
+
       {error && (
         <p role="alert" className="mb-4 text-sm text-red-600">
           {error}

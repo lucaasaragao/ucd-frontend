@@ -39,3 +39,12 @@ export function Button({
     />
   )
 }
+
+export function StatTile({ label, value, accent = 'text-brand-blue-dark' }: { label: string; value: string | number; accent?: string }) {
+  return (
+    <div className="rounded-xl border border-slate-200 bg-white p-4">
+      <p className={`font-head text-3xl font-black ${accent}`}>{value}</p>
+      <p className="mt-1 text-sm font-medium text-slate-500">{label}</p>
+    </div>
+  )
+}

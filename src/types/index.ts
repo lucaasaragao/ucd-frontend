@@ -1,4 +1,5 @@
 export type Role = 'ATHLETE' | 'ORGANIZER'
+export type Gender = 'MALE' | 'FEMALE' | 'OTHER' | 'PREFER_NOT_TO_SAY'
 
 export interface User {
   id: number
@@ -7,7 +8,7 @@ export interface User {
   phone: string | null
   cpf: string | null
   birthDate: string | null
-  gender: string | null
+  gender: Gender | null
   city: string | null
   state: string | null
   role: Role

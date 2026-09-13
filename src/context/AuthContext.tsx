@@ -10,6 +10,7 @@ interface AuthContextValue {
   login: (email: string, password: string) => Promise<void>
   register: (payload: authApi.RegisterPayload) => Promise<void>
   logout: () => void
+  updateUser: (user: User) => void
 }
 
 const AuthContext = createContext<AuthContextValue | null>(null)
@@ -46,7 +47,14 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     setUser(null)
   }
 
-  return <AuthContext.Provider value={{ user, login, register, logout }}>{children}</AuthContext.Provider>
+  function updateUser(updated: User) {
+    localStorage.setItem(USER_STORAGE_KEY, JSON.stringify(updated))
+    setUser(updated)
+  }
+
+  return (
+    <AuthContext.Provider value={{ user, login, register, logout, updateUser }}>{children}</AuthContext.Provider>
+  )
 }
 
 export function useAuth() {

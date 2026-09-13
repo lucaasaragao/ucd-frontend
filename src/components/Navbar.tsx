@@ -36,7 +36,9 @@ export function Navbar() {
           )}
           {user ? (
             <div className="flex items-center gap-3">
-              <span className="text-sm text-slate-500">{user.name}</span>
+              <Link to="/perfil" className={navLinkClass('/perfil')}>
+                {user.name}
+              </Link>
               <Button variant="secondary" onClick={handleLogout} className="px-3 py-1.5 text-xs">
                 Sair
               </Button>
