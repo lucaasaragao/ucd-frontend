@@ -46,13 +46,13 @@ export function LandingPage() {
   return (
     <div className="font-body bg-ink text-fg">
       {/* NAVBAR */}
-      <header className="fixed inset-x-0 top-0 z-50 h-[70px] border-b border-border bg-ink/95 backdrop-blur">
+      <header className="fixed inset-x-0 top-0 z-50 h-[70px] border-b border-chrome-border bg-chrome backdrop-blur">
         <div className="mx-auto flex h-full max-w-6xl items-center justify-between px-6">
-          <Link to="/" className="font-head flex items-center gap-2 text-2xl font-black uppercase tracking-wide text-fg">
+          <Link to="/" className="font-head flex items-center gap-2 text-2xl font-black uppercase tracking-wide text-chrome-fg">
             <img src={logo} alt="UCD Runner" className="h-10 w-10 rounded-full" />
             UCD <span className="text-brand-yellow">RUNNER</span>
           </Link>
-          <nav className="hidden items-center gap-8 text-sm font-medium text-fg-muted md:flex">
+          <nav className="hidden items-center gap-8 text-sm font-medium text-chrome-fg-muted md:flex">
             <a href="#proximo-evento" className="hover:text-brand-yellow">
               Próximo evento
             </a>
@@ -74,7 +74,7 @@ export function LandingPage() {
               </Link>
             ) : (
               <>
-                <Link to="/login" className="hidden text-sm font-medium text-fg-muted hover:text-fg sm:block">
+                <Link to="/login" className="hidden text-sm font-medium text-chrome-fg-muted hover:text-chrome-fg sm:block">
                   Entrar
                 </Link>
                 <Link

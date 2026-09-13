@@ -32,7 +32,7 @@ export function DashboardLayout({ children, title }: { children: ReactNode; titl
 
   const sidebarContent = (
     <>
-      <Link to="/dashboard" className="font-head flex items-center gap-2 px-5 py-6 text-lg font-bold text-fg">
+      <Link to="/dashboard" className="font-head flex items-center gap-2 px-5 py-6 text-lg font-bold text-chrome-fg">
         <img src={logo} alt="UCD Runner" className="h-9 w-9 rounded-full" />
         UCD <span className="text-brand-yellow">RUNNER</span>
       </Link>
@@ -45,7 +45,9 @@ export function DashboardLayout({ children, title }: { children: ReactNode; titl
               to={item.to}
               onClick={() => setMobileOpen(false)}
               className={`flex items-center gap-3 rounded-md px-3 py-2.5 text-sm font-medium transition ${
-                active ? 'bg-brand-yellow/10 text-brand-yellow' : 'text-fg-muted hover:bg-hover hover:text-fg'
+                active
+                  ? 'bg-brand-yellow/15 text-brand-yellow'
+                  : 'text-chrome-fg-muted hover:bg-white/10 hover:text-chrome-fg'
               }`}
             >
               <span className="text-lg">{item.icon}</span>
@@ -57,7 +59,7 @@ export function DashboardLayout({ children, title }: { children: ReactNode; titl
       <div className="mt-auto px-3 pb-6">
         <button
           onClick={handleLogout}
-          className="flex w-full items-center gap-3 rounded-md px-3 py-2.5 text-sm font-medium text-fg-muted transition hover:bg-hover hover:text-fg"
+          className="flex w-full items-center gap-3 rounded-md px-3 py-2.5 text-sm font-medium text-chrome-fg-muted transition hover:bg-white/10 hover:text-chrome-fg"
         >
           <span className="text-lg">🚪</span>
           Sair
@@ -69,7 +71,7 @@ export function DashboardLayout({ children, title }: { children: ReactNode; titl
   return (
     <div className="flex min-h-screen bg-ink">
       {/* sidebar (desktop) */}
-      <aside className="fixed inset-y-0 left-0 hidden w-64 flex-col border-r border-border bg-surface md:flex">
+      <aside className="fixed inset-y-0 left-0 hidden w-64 flex-col border-r border-chrome-border bg-chrome md:flex">
         {sidebarContent}
       </aside>
 
@@ -81,28 +83,28 @@ export function DashboardLayout({ children, title }: { children: ReactNode; titl
             className="absolute inset-0 bg-black/60"
             onClick={() => setMobileOpen(false)}
           />
-          <aside className="relative flex h-full w-64 flex-col border-r border-border bg-surface">
+          <aside className="relative flex h-full w-64 flex-col border-r border-chrome-border bg-chrome">
             {sidebarContent}
           </aside>
         </div>
       )}
 
       <div className="flex min-h-screen flex-1 flex-col md:pl-64">
-        <header className="sticky top-0 z-30 flex items-center justify-between border-b border-border bg-ink/95 px-5 py-4 backdrop-blur">
+        <header className="sticky top-0 z-30 flex items-center justify-between border-b border-chrome-border bg-chrome px-5 py-4">
           <div className="flex items-center gap-3">
             <button
               aria-label="Abrir menu"
               onClick={() => setMobileOpen(true)}
-              className="text-xl text-fg md:hidden"
+              className="text-xl text-chrome-fg md:hidden"
             >
               ☰
             </button>
-            <h1 className="font-head text-xl font-bold text-fg">{title}</h1>
+            <h1 className="font-head text-xl font-bold text-chrome-fg">{title}</h1>
           </div>
           <div className="flex items-center gap-3">
             <ThemeToggle />
             {user && (
-              <Link to="/perfil" className="flex items-center gap-2 text-sm text-fg-muted hover:text-fg">
+              <Link to="/perfil" className="flex items-center gap-2 text-sm text-chrome-fg-muted hover:text-chrome-fg">
                 <span className="font-head grid h-8 w-8 place-items-center rounded-full bg-brand-yellow text-sm font-black text-black">
                   {user.name.charAt(0).toUpperCase()}
                 </span>
