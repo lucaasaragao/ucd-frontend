@@ -60,7 +60,7 @@ export function StatTile({
   return (
     <Card className="flex items-center gap-4">
       {icon && (
-        <div className={`grid h-11 w-11 shrink-0 place-items-center rounded-md bg-hover text-xl ${accent}`}>
+        <div aria-hidden="true" className={`grid h-11 w-11 shrink-0 place-items-center rounded-md bg-hover text-xl ${accent}`}>
           {icon}
         </div>
       )}

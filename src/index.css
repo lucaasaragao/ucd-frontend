@@ -15,7 +15,7 @@
   --color-surface-2: #1e1e24;
   --color-fg: #ffffff;
   --color-fg-muted: rgb(255 255 255 / 65%);
-  --color-fg-subtle: rgb(255 255 255 / 45%);
+  --color-fg-subtle: rgb(255 255 255 / 58%);
   --color-border: rgb(255 255 255 / 10%);
   --color-hover: rgb(255 255 255 / 6%);
 
@@ -33,7 +33,7 @@
   --color-surface-2: #e8ecf5;
   --color-fg: #0a0a0c;
   --color-fg-muted: rgb(10 10 12 / 65%);
-  --color-fg-subtle: rgb(10 10 12 / 45%);
+  --color-fg-subtle: rgb(10 10 12 / 58%);
   --color-border: rgb(10 10 12 / 10%);
   --color-hover: rgb(10 10 12 / 5%);
 

@@ -50,7 +50,7 @@ export function DashboardLayout({ children, title }: { children: ReactNode; titl
                   : 'text-chrome-fg-muted hover:bg-white/10 hover:text-chrome-fg'
               }`}
             >
-              <span className="text-lg">{item.icon}</span>
+              <span aria-hidden="true" className="text-lg">{item.icon}</span>
               {item.label}
             </Link>
           )
@@ -61,7 +61,7 @@ export function DashboardLayout({ children, title }: { children: ReactNode; titl
           onClick={handleLogout}
           className="flex w-full items-center gap-3 rounded-md px-3 py-2.5 text-sm font-medium text-chrome-fg-muted transition hover:bg-white/10 hover:text-chrome-fg"
         >
-          <span className="text-lg">🚪</span>
+          <span aria-hidden="true" className="text-lg">🚪</span>
           Sair
         </button>
       </div>
@@ -95,9 +95,9 @@ export function DashboardLayout({ children, title }: { children: ReactNode; titl
             <button
               aria-label="Abrir menu"
               onClick={() => setMobileOpen(true)}
-              className="text-xl text-chrome-fg md:hidden"
+              className="rounded-md text-xl text-chrome-fg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-yellow focus-visible:ring-offset-2 focus-visible:ring-offset-chrome md:hidden"
             >
-              ☰
+              <span aria-hidden="true">☰</span>
             </button>
             <h1 className="font-head text-xl font-bold text-chrome-fg">{title}</h1>
           </div>

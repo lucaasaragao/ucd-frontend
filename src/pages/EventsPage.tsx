@@ -57,7 +57,7 @@ export function EventsPage() {
                 >
                   <div className="flex items-start justify-between gap-2">
                     <div className="flex items-center gap-2">
-                      <span className="text-2xl">{EVENT_TYPE_ICON[event.eventType] ?? '🏁'}</span>
+                      <span aria-hidden="true" className="text-2xl">{EVENT_TYPE_ICON[event.eventType] ?? '🏁'}</span>
                       <h3 className="font-head text-lg font-bold text-fg">{event.name}</h3>
                     </div>
                     <span className="shrink-0 rounded-full bg-hover px-2.5 py-1 text-xs font-semibold text-fg-muted">
