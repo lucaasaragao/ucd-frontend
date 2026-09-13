@@ -1,18 +1,21 @@
 @import "tailwindcss";
 
 @theme {
-  --font-head: 'Barlow Condensed', sans-serif;
-  --font-body: 'DM Sans', system-ui, sans-serif;
-  /* Paleta extraída do logo real de @ucd.runner (Instagram) */
+  --font-head: 'Exo 2', ui-sans-serif, system-ui, sans-serif;
+  --font-body: 'Exo 2', ui-sans-serif, system-ui, sans-serif;
+  /* Paleta extraida do logo real de @ucd.runner (Instagram), sobre fundo escuro premium */
   --color-brand-blue: #0d55c4;
   --color-brand-blue-dark: #0a2a6b;
   --color-brand-yellow: #f0b90d;
   --color-brand-yellow-hover: #d9a70b;
+  --color-ink: #0a0a0c;
+  --color-surface: #16161a;
+  --color-surface-2: #1e1e24;
 }
 
 body {
   margin: 0;
-  color-scheme: light;
+  color-scheme: dark;
   font-family: var(--font-body);
+  background: var(--color-ink);
 }
-

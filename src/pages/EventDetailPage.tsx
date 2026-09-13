@@ -36,30 +36,20 @@ export function EventDetailPage() {
     }
   }
 
-  if (loading)
-    return (
-      <p aria-busy="true" className="mx-auto mt-16 max-w-4xl px-4 text-slate-500">
-        Carregando...
-      </p>
-    )
-  if (!event)
-    return (
-      <p role="alert" className="mx-auto mt-16 max-w-4xl px-4 text-red-600">
-        {error ?? 'Evento não encontrado'}
-      </p>
-    )
+  if (loading) return <p aria-busy="true" className="text-white/50">Carregando...</p>
+  if (!event) return <p role="alert" className="text-red-400">{error ?? 'Evento não encontrado'}</p>
 
   return (
-    <div className="mx-auto mt-10 max-w-4xl px-4">
-      <h1 className="font-head text-3xl font-bold text-brand-blue-dark">{event.name}</h1>
-      <p className="mt-1 text-sm text-slate-500">
+    <div>
+      <h2 className="font-head text-2xl font-bold text-white">{event.name}</h2>
+      <p className="mt-1 text-sm text-white/50">
         {event.location} · {event.city}/{event.state} · {event.eventDate}
       </p>
-      <p className="mt-4 text-slate-700">{event.description}</p>
+      <p className="mt-4 max-w-2xl text-white/70">{event.description}</p>
 
-      <h2 className="font-head mb-3 mt-8 text-xl font-bold text-brand-blue-dark">Categorias</h2>
+      <h3 className="font-head mb-3 mt-8 text-lg font-bold text-white">Categorias</h3>
       {error && (
-        <p role="alert" className="mb-3 text-sm text-red-600">
+        <p role="alert" className="mb-3 text-sm text-red-400">
           {error}
         </p>
       )}
@@ -67,11 +57,11 @@ export function EventDetailPage() {
         {event.categories.map((category) => (
           <li
             key={category.id}
-            className="flex items-center justify-between gap-4 rounded-lg border border-slate-200 p-4"
+            className="flex items-center justify-between gap-4 rounded-md border border-white/10 bg-surface p-4"
           >
             <div>
-              <p className="font-medium text-slate-900">{category.name}</p>
-              <p className="text-sm text-slate-500">
+              <p className="font-medium text-white">{category.name}</p>
+              <p className="text-sm text-white/50">
                 {category.distanceMeters}m · R$ {category.price.toFixed(2)} ·{' '}
                 {category.confirmedCount}/{category.maxParticipants} vagas
               </p>
@@ -89,7 +79,7 @@ export function EventDetailPage() {
                     : 'Esgotado'}
               </Button>
             ) : !user ? (
-              <span className="shrink-0 text-sm text-slate-400">Entre como atleta para se inscrever</span>
+              <span className="shrink-0 text-sm text-white/40">Entre como atleta para se inscrever</span>
             ) : null}
           </li>
         ))}

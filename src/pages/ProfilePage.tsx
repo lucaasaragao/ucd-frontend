@@ -1,6 +1,6 @@
 import { useState, type FormEvent } from 'react'
 import { changePassword, updateProfile } from '../api/profile'
-import { Button, Field, Input, Select } from '../components/ui'
+import { Button, Card, Field, Input, Select } from '../components/ui'
 import { useAuth } from '../context/AuthContext'
 import type { Gender } from '../types'
 
@@ -72,22 +72,22 @@ export function ProfilePage() {
   }
 
   return (
-    <div className="mx-auto mt-10 max-w-3xl px-4 pb-16">
-      <div className="mb-6 flex items-center gap-4 rounded-xl bg-brand-blue-dark p-6 text-white">
-        <div className="font-head grid h-16 w-16 shrink-0 place-items-center rounded-full bg-brand-yellow text-2xl font-black text-brand-blue-dark">
+    <div className="flex max-w-3xl flex-col gap-6">
+      <div className="flex items-center gap-4 rounded-md border border-white/10 bg-surface p-6">
+        <div className="font-head grid h-16 w-16 shrink-0 place-items-center rounded-full bg-brand-yellow text-2xl font-black text-black">
           {user.name.charAt(0).toUpperCase()}
         </div>
         <div>
-          <h1 className="font-head text-2xl font-bold">{user.name}</h1>
-          <p className="text-sm text-white/70">{user.email}</p>
-          <span className="mt-1 inline-block rounded-full bg-white/15 px-2.5 py-0.5 text-xs font-semibold">
+          <h2 className="font-head text-2xl font-bold text-white">{user.name}</h2>
+          <p className="text-sm text-white/50">{user.email}</p>
+          <span className="mt-1 inline-block rounded-full bg-white/10 px-2.5 py-0.5 text-xs font-semibold text-white/70">
             {ROLE_LABEL[user.role] ?? user.role}
           </span>
         </div>
       </div>
 
-      <div className="rounded-xl border border-slate-200 p-6">
-        <h2 className="font-head mb-4 text-xl font-bold text-brand-blue-dark">Dados pessoais</h2>
+      <Card>
+        <h3 className="font-head mb-4 text-lg font-bold text-white">Dados pessoais</h3>
         <form onSubmit={handleProfileSubmit} className="grid gap-4 sm:grid-cols-2">
           <Field label="Nome">
             <Input required value={name} onChange={(e) => setName(e.target.value)} />
@@ -122,19 +122,19 @@ export function ProfilePage() {
               <Button type="submit" disabled={savingProfile}>
                 {savingProfile ? 'Salvando...' : 'Salvar alterações'}
               </Button>
-              {profileSuccess && <span className="text-sm text-emerald-600">Perfil atualizado!</span>}
+              {profileSuccess && <span className="text-sm text-emerald-400">Perfil atualizado!</span>}
               {profileError && (
-                <span role="alert" className="text-sm text-red-600">
+                <span role="alert" className="text-sm text-red-400">
                   {profileError}
                 </span>
               )}
             </div>
           </div>
         </form>
-      </div>
+      </Card>
 
-      <div className="mt-6 rounded-xl border border-slate-200 p-6">
-        <h2 className="font-head mb-4 text-xl font-bold text-brand-blue-dark">Trocar senha</h2>
+      <Card>
+        <h3 className="font-head mb-4 text-lg font-bold text-white">Trocar senha</h3>
         <form onSubmit={handlePasswordSubmit} className="grid gap-4 sm:grid-cols-2">
           <Field label="Senha atual">
             <Input
@@ -158,16 +158,16 @@ export function ProfilePage() {
               <Button type="submit" disabled={savingPassword}>
                 {savingPassword ? 'Salvando...' : 'Trocar senha'}
               </Button>
-              {passwordSuccess && <span className="text-sm text-emerald-600">Senha alterada!</span>}
+              {passwordSuccess && <span className="text-sm text-emerald-400">Senha alterada!</span>}
               {passwordError && (
-                <span role="alert" className="text-sm text-red-600">
+                <span role="alert" className="text-sm text-red-400">
                   {passwordError}
                 </span>
               )}
             </div>
           </div>
         </form>
-      </div>
+      </Card>
     </div>
   )
 }
