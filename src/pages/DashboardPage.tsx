@@ -66,7 +66,7 @@ export function DashboardPage() {
   if (user?.role !== 'ATHLETE') {
     return (
       <Card>
-        <p className="text-white/70">
+        <p className="text-fg-muted">
           Métricas de organizador ainda não disponíveis nesta versão. Veja{' '}
           <Link to="/eventos" className="font-medium text-brand-yellow hover:underline">
             eventos publicados
@@ -77,17 +77,17 @@ export function DashboardPage() {
     )
   }
 
-  if (registrations === null) return <p className="text-white/50">Carregando...</p>
+  if (registrations === null) return <p className="text-fg-subtle">Carregando...</p>
 
   return (
     <div className="flex flex-col gap-6">
       <div>
-        <h2 className="font-head text-2xl font-bold text-white">Olá, {user.name.split(' ')[0]} 👋</h2>
-        <p className="mt-1 text-sm text-white/50">Aqui está um resumo da sua jornada como corredor.</p>
+        <h2 className="font-head text-2xl font-bold text-fg">Olá, {user.name.split(' ')[0]} 👋</h2>
+        <p className="mt-1 text-sm text-fg-subtle">Aqui está um resumo da sua jornada como corredor.</p>
       </div>
 
       <div className="grid grid-cols-2 gap-4 lg:grid-cols-4">
-        <StatTile label="Inscrições" value={total} icon="🎽" accent="text-white" />
+        <StatTile label="Inscrições" value={total} icon="🎽" accent="text-fg" />
         <StatTile label="Confirmadas" value={confirmedCount} icon="✅" accent="text-emerald-400" />
         <StatTile label="Aguardando pagamento" value={pendingCount} icon="⏳" accent="text-amber-400" />
         <StatTile label="Resultados" value={results.length} icon="🏅" accent="text-brand-yellow" />
@@ -95,7 +95,7 @@ export function DashboardPage() {
 
       <div className="grid gap-6 lg:grid-cols-3">
         <Card className="lg:col-span-2">
-          <h3 className="font-head mb-4 text-lg font-bold text-white">Próxima corrida</h3>
+          <h3 className="font-head mb-4 text-lg font-bold text-fg">Próxima corrida</h3>
           {nextRace?.event ? (
             <div className="flex flex-col items-start gap-4 sm:flex-row sm:items-center">
               <div className="font-head grid h-20 w-20 shrink-0 place-items-center rounded-md bg-brand-yellow/10 text-center text-brand-yellow">
@@ -105,8 +105,8 @@ export function DashboardPage() {
                 </div>
               </div>
               <div className="flex-1">
-                <p className="font-head text-lg font-bold text-white">{nextRace.event.name}</p>
-                <p className="text-sm text-white/50">
+                <p className="font-head text-lg font-bold text-fg">{nextRace.event.name}</p>
+                <p className="text-sm text-fg-subtle">
                   {nextRace.registration.categoryName} · 📍 {nextRace.event.city}/{nextRace.event.state} · 📅{' '}
                   {nextRace.event.eventDate}
                 </p>
@@ -119,7 +119,7 @@ export function DashboardPage() {
               </Link>
             </div>
           ) : (
-            <p className="text-white/50">
+            <p className="text-fg-subtle">
               Nenhuma corrida futura confirmada.{' '}
               <Link to="/eventos" className="font-medium text-brand-yellow hover:underline">
                 Ver eventos abertos
@@ -129,7 +129,7 @@ export function DashboardPage() {
         </Card>
 
         <Card>
-          <h3 className="font-head mb-4 text-lg font-bold text-white">Status das inscrições</h3>
+          <h3 className="font-head mb-4 text-lg font-bold text-fg">Status das inscrições</h3>
           {statusRing ? (
             <div className="flex items-center gap-5">
               <div
@@ -137,10 +137,10 @@ export function DashboardPage() {
                 style={{ background: statusRing }}
               >
                 <div className="grid h-16 w-16 place-items-center rounded-full bg-surface">
-                  <span className="font-head text-xl font-black text-white">{total}</span>
+                  <span className="font-head text-xl font-black text-fg">{total}</span>
                 </div>
               </div>
-              <ul className="flex flex-col gap-1.5 text-xs text-white/70">
+              <ul className="flex flex-col gap-1.5 text-xs text-fg-muted">
                 <li className="flex items-center gap-2">
                   <span className="h-2 w-2 rounded-full bg-emerald-400" /> Confirmadas ({confirmedCount})
                 </li>
@@ -153,32 +153,32 @@ export function DashboardPage() {
               </ul>
             </div>
           ) : (
-            <p className="text-sm text-white/50">Sem inscrições ainda.</p>
+            <p className="text-sm text-fg-subtle">Sem inscrições ainda.</p>
           )}
         </Card>
       </div>
 
       <Card>
         <div className="mb-4 flex items-center justify-between">
-          <h3 className="font-head text-lg font-bold text-white">Atividade recente</h3>
+          <h3 className="font-head text-lg font-bold text-fg">Atividade recente</h3>
           <Link to="/minhas-inscricoes" className="text-sm font-medium text-brand-yellow hover:underline">
             Ver todas →
           </Link>
         </div>
         {registrations.length === 0 ? (
-          <p className="text-sm text-white/50">Você ainda não se inscreveu em nenhum evento.</p>
+          <p className="text-sm text-fg-subtle">Você ainda não se inscreveu em nenhum evento.</p>
         ) : (
-          <ul className="flex flex-col divide-y divide-white/5">
+          <ul className="flex flex-col divide-y divide-border">
             {registrations.slice(0, 5).map((r) => (
               <li key={r.id} className="flex items-center justify-between gap-2 py-3">
                 <div className="flex items-center gap-3">
                   <span className={`h-2 w-2 shrink-0 rounded-full ${STATUS_DOT[r.status]}`} />
                   <div>
-                    <p className="text-sm font-medium text-white">{r.eventName}</p>
-                    <p className="text-xs text-white/40">{r.categoryName}</p>
+                    <p className="text-sm font-medium text-fg">{r.eventName}</p>
+                    <p className="text-xs text-fg-subtle">{r.categoryName}</p>
                   </div>
                 </div>
-                <span className="text-xs font-medium text-white/60">{STATUS_LABEL[r.status]}</span>
+                <span className="text-xs font-medium text-fg-muted">{STATUS_LABEL[r.status]}</span>
               </li>
             ))}
           </ul>

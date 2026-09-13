@@ -36,18 +36,18 @@ export function EventDetailPage() {
     }
   }
 
-  if (loading) return <p aria-busy="true" className="text-white/50">Carregando...</p>
+  if (loading) return <p aria-busy="true" className="text-fg-subtle">Carregando...</p>
   if (!event) return <p role="alert" className="text-red-400">{error ?? 'Evento não encontrado'}</p>
 
   return (
     <div>
-      <h2 className="font-head text-2xl font-bold text-white">{event.name}</h2>
-      <p className="mt-1 text-sm text-white/50">
+      <h2 className="font-head text-2xl font-bold text-fg">{event.name}</h2>
+      <p className="mt-1 text-sm text-fg-subtle">
         {event.location} · {event.city}/{event.state} · {event.eventDate}
       </p>
-      <p className="mt-4 max-w-2xl text-white/70">{event.description}</p>
+      <p className="mt-4 max-w-2xl text-fg-muted">{event.description}</p>
 
-      <h3 className="font-head mb-3 mt-8 text-lg font-bold text-white">Categorias</h3>
+      <h3 className="font-head mb-3 mt-8 text-lg font-bold text-fg">Categorias</h3>
       {error && (
         <p role="alert" className="mb-3 text-sm text-red-400">
           {error}
@@ -57,11 +57,11 @@ export function EventDetailPage() {
         {event.categories.map((category) => (
           <li
             key={category.id}
-            className="flex items-center justify-between gap-4 rounded-md border border-white/10 bg-surface p-4"
+            className="flex items-center justify-between gap-4 rounded-md border border-border bg-surface p-4"
           >
             <div>
-              <p className="font-medium text-white">{category.name}</p>
-              <p className="text-sm text-white/50">
+              <p className="font-medium text-fg">{category.name}</p>
+              <p className="text-sm text-fg-subtle">
                 {category.distanceMeters}m · R$ {category.price.toFixed(2)} ·{' '}
                 {category.confirmedCount}/{category.maxParticipants} vagas
               </p>
@@ -79,7 +79,7 @@ export function EventDetailPage() {
                     : 'Esgotado'}
               </Button>
             ) : !user ? (
-              <span className="shrink-0 text-sm text-white/40">Entre como atleta para se inscrever</span>
+              <span className="shrink-0 text-sm text-fg-subtle">Entre como atleta para se inscrever</span>
             ) : null}
           </li>
         ))}

@@ -72,7 +72,7 @@ export function MyRegistrationsPage() {
     }
   }
 
-  if (loading) return <p aria-busy="true" className="text-white/50">Carregando...</p>
+  if (loading) return <p aria-busy="true" className="text-fg-subtle">Carregando...</p>
 
   const confirmedCount = registrations.filter((r) => r.status === 'CONFIRMED').length
   const pendingCount = registrations.filter((r) => r.status === 'PENDING_PAYMENT').length
@@ -81,7 +81,7 @@ export function MyRegistrationsPage() {
     <div>
       {registrations.length > 0 && (
         <div className="mb-8 grid grid-cols-2 gap-4 lg:grid-cols-4">
-          <StatTile label="Inscrições" value={registrations.length} icon="🎽" accent="text-white" />
+          <StatTile label="Inscrições" value={registrations.length} icon="🎽" accent="text-fg" />
           <StatTile label="Confirmadas" value={confirmedCount} icon="✅" accent="text-emerald-400" />
           <StatTile label="Aguardando pagamento" value={pendingCount} icon="⏳" accent="text-amber-400" />
           <StatTile label="Resultados" value={results.length} icon="🏅" accent="text-brand-yellow" />
@@ -94,7 +94,7 @@ export function MyRegistrationsPage() {
         </p>
       )}
       {registrations.length === 0 ? (
-        <p className="text-white/50">
+        <p className="text-fg-subtle">
           Você ainda não se inscreveu em nenhum evento.{' '}
           <Link to="/eventos" className="font-medium text-brand-yellow hover:underline">
             Ver eventos abertos
@@ -107,11 +107,11 @@ export function MyRegistrationsPage() {
             const payment = registration.payment
 
             return (
-              <li key={registration.id} className="rounded-md border border-white/10 bg-surface p-4">
+              <li key={registration.id} className="rounded-md border border-border bg-surface p-4">
                 <div className="flex items-center justify-between gap-2">
                   <div>
-                    <p className="font-medium text-white">{registration.eventName}</p>
-                    <p className="text-sm text-white/50">
+                    <p className="font-medium text-fg">{registration.eventName}</p>
+                    <p className="text-sm text-fg-subtle">
                       {registration.categoryName} · Código {registration.registrationCode}
                     </p>
                   </div>
@@ -123,8 +123,8 @@ export function MyRegistrationsPage() {
                 </div>
 
                 {payment && (
-                  <div className="mt-3 flex flex-wrap items-center justify-between gap-2 rounded-md bg-white/5 px-3 py-2 text-sm">
-                    <span className="flex items-center gap-2 text-white/60">
+                  <div className="mt-3 flex flex-wrap items-center justify-between gap-2 rounded-md bg-hover px-3 py-2 text-sm">
+                    <span className="flex items-center gap-2 text-fg-muted">
                       Pagamento: R$ {payment.amount.toFixed(2)}
                       <span className={`rounded-full px-2 py-0.5 text-xs font-semibold ${PAYMENT_BADGE[payment.status]}`}>
                         {payment.status}

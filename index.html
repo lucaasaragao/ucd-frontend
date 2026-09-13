@@ -7,6 +7,12 @@
     <meta name="description" content="UCD — plataforma para organizar e se inscrever em eventos de corrida de rua." />
     <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
     <title>UCD</title>
+    <script>
+      (function () {
+        var theme = localStorage.getItem('ucd.theme') === 'light' ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-theme', theme);
+      })();
+    </script>
   </head>
   <body>
     <div id="root"></div>

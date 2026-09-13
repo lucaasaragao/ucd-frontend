@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { listEvents } from '../api/events'
 import logo from '../assets/ucd-runner-logo.jpg'
 import { Reveal } from '../components/Reveal'
+import { ThemeToggle } from '../components/ThemeToggle'
 import { useAuth } from '../context/AuthContext'
 import { useCountdown } from '../hooks/useCountdown'
 import type { Event } from '../types'
@@ -43,15 +44,15 @@ export function LandingPage() {
   }, [events])
 
   return (
-    <div className="font-body bg-ink text-white">
+    <div className="font-body bg-ink text-fg">
       {/* NAVBAR */}
-      <header className="fixed inset-x-0 top-0 z-50 h-[70px] border-b border-white/10 bg-ink/95 backdrop-blur">
+      <header className="fixed inset-x-0 top-0 z-50 h-[70px] border-b border-border bg-ink/95 backdrop-blur">
         <div className="mx-auto flex h-full max-w-6xl items-center justify-between px-6">
-          <Link to="/" className="font-head flex items-center gap-2 text-2xl font-black uppercase tracking-wide text-white">
+          <Link to="/" className="font-head flex items-center gap-2 text-2xl font-black uppercase tracking-wide text-fg">
             <img src={logo} alt="UCD Runner" className="h-10 w-10 rounded-full" />
             UCD <span className="text-brand-yellow">RUNNER</span>
           </Link>
-          <nav className="hidden items-center gap-8 text-sm font-medium text-white/70 md:flex">
+          <nav className="hidden items-center gap-8 text-sm font-medium text-fg-muted md:flex">
             <a href="#proximo-evento" className="hover:text-brand-yellow">
               Próximo evento
             </a>
@@ -63,6 +64,7 @@ export function LandingPage() {
             </a>
           </nav>
           <div className="flex items-center gap-3">
+            <ThemeToggle />
             {user ? (
               <Link
                 to="/dashboard"
@@ -72,7 +74,7 @@ export function LandingPage() {
               </Link>
             ) : (
               <>
-                <Link to="/login" className="hidden text-sm font-medium text-white/70 hover:text-white sm:block">
+                <Link to="/login" className="hidden text-sm font-medium text-fg-muted hover:text-fg sm:block">
                   Entrar
                 </Link>
                 <Link
@@ -88,7 +90,7 @@ export function LandingPage() {
       </header>
 
       {/* HERO */}
-      <section className="relative overflow-hidden border-b border-white/5 pt-[70px]">
+      <section className="relative overflow-hidden border-b border-border pt-[70px]">
         <div className="mx-auto max-w-6xl px-6 py-24 md:py-32">
           {featured && (
             <Reveal>
@@ -98,18 +100,18 @@ export function LandingPage() {
             </Reveal>
           )}
           <Reveal delay={100}>
-            <p className="font-head mt-6 text-sm font-semibold uppercase tracking-[0.3em] text-white/50">
+            <p className="font-head mt-6 text-sm font-semibold uppercase tracking-[0.3em] text-fg-subtle">
               UCD · Eventos de corrida de rua
             </p>
           </Reveal>
           <Reveal delay={200}>
-            <h1 className="font-head mt-3 max-w-3xl text-6xl font-black uppercase leading-[0.95] text-white sm:text-7xl">
+            <h1 className="font-head mt-3 max-w-3xl text-6xl font-black uppercase leading-[0.95] text-fg sm:text-7xl">
               Organize e corra. <br />
               <em className="text-brand-yellow not-italic">Tudo em um só lugar.</em>
             </h1>
           </Reveal>
           <Reveal delay={300}>
-            <p className="mt-6 max-w-xl text-lg leading-relaxed text-white/60">
+            <p className="mt-6 max-w-xl text-lg leading-relaxed text-fg-muted">
               Inscrições, pagamento e resultados de corridas de rua em uma plataforma só. Encontre um evento e
               garanta sua vaga, ou crie o seu como organizador.
             </p>
@@ -121,7 +123,7 @@ export function LandingPage() {
             >
               Ver eventos abertos
             </a>
-            <Link to="/registrar" className="border-b border-dotted border-white/30 pb-0.5 text-white/70 hover:border-brand-yellow hover:text-brand-yellow">
+            <Link to="/registrar" className="border-b border-dotted border-border pb-0.5 text-fg-muted hover:border-brand-yellow hover:text-brand-yellow">
               Criar conta grátis →
             </Link>
           </Reveal>
@@ -130,32 +132,32 @@ export function LandingPage() {
 
       {/* STATS */}
       {stats && (
-        <section className="border-b border-white/5 bg-surface py-8">
-          <div className="mx-auto grid max-w-6xl grid-cols-3 divide-x divide-white/10 px-6 text-center">
+        <section className="border-b border-border bg-surface py-8">
+          <div className="mx-auto grid max-w-6xl grid-cols-3 divide-x divide-border px-6 text-center">
             <div>
               <span className="font-head block text-4xl font-black text-brand-yellow">{stats.events}</span>
-              <span className="text-sm font-medium uppercase tracking-wide text-white/60">
+              <span className="text-sm font-medium uppercase tracking-wide text-fg-muted">
                 Evento{stats.events === 1 ? '' : 's'} publicado{stats.events === 1 ? '' : 's'}
               </span>
             </div>
             <div>
               <span className="font-head block text-4xl font-black text-brand-yellow">{stats.confirmed}</span>
-              <span className="text-sm font-medium uppercase tracking-wide text-white/60">Inscrições confirmadas</span>
+              <span className="text-sm font-medium uppercase tracking-wide text-fg-muted">Inscrições confirmadas</span>
             </div>
             <div>
               <span className="font-head block text-4xl font-black text-brand-yellow">{stats.slots}</span>
-              <span className="text-sm font-medium uppercase tracking-wide text-white/60">Vagas no total</span>
+              <span className="text-sm font-medium uppercase tracking-wide text-fg-muted">Vagas no total</span>
             </div>
           </div>
         </section>
       )}
 
       {/* PRÓXIMO EVENTO */}
-      <section id="proximo-evento" className="border-b border-white/5 py-24">
+      <section id="proximo-evento" className="border-b border-border py-24">
         <div className="mx-auto max-w-6xl px-6">
           {featured ? (
             <div className="grid items-center gap-14 md:grid-cols-2">
-              <Reveal className="relative aspect-[4/3] overflow-hidden rounded-md border border-white/10 bg-surface-2">
+              <Reveal className="relative aspect-[4/3] overflow-hidden rounded-md border border-border bg-surface-2">
                 <div className="flex h-full items-center justify-center text-8xl">🏁</div>
                 <span className="font-head absolute left-4 top-4 rounded-full bg-brand-yellow px-4 py-1.5 text-sm font-bold uppercase tracking-wide text-black">
                   Inscrições abertas
@@ -163,19 +165,19 @@ export function LandingPage() {
               </Reveal>
               <Reveal delay={150}>
                 <SectionLabel>Próximo evento</SectionLabel>
-                <h2 className="font-head text-4xl font-black uppercase leading-tight text-white sm:text-5xl">
+                <h2 className="font-head text-4xl font-black uppercase leading-tight text-fg sm:text-5xl">
                   {featured.name}
                 </h2>
-                <ul className="mt-6 flex flex-col gap-3 text-white/60">
-                  <li>📅 <strong className="text-white">Data:</strong> {formatDate(featured.eventDate)}</li>
-                  <li>📍 <strong className="text-white">Local:</strong> {featured.location} · {featured.city}/{featured.state}</li>
+                <ul className="mt-6 flex flex-col gap-3 text-fg-muted">
+                  <li>📅 <strong className="text-fg">Data:</strong> {formatDate(featured.eventDate)}</li>
+                  <li>📍 <strong className="text-fg">Local:</strong> {featured.location} · {featured.city}/{featured.state}</li>
                   <li>
-                    🏃 <strong className="text-white">Modalidade:</strong> {EVENT_TYPE_LABEL[featured.eventType] ?? featured.eventType}
+                    🏃 <strong className="text-fg">Modalidade:</strong> {EVENT_TYPE_LABEL[featured.eventType] ?? featured.eventType}
                   </li>
                   <li className="flex flex-wrap items-center gap-2">
-                    🎽 <strong className="text-white">Categorias:</strong>
+                    🎽 <strong className="text-fg">Categorias:</strong>
                     {featured.categories.map((c) => (
-                      <span key={c.id} className="rounded-full bg-white/10 px-3 py-0.5 text-xs font-semibold text-white">
+                      <span key={c.id} className="rounded-full bg-surface-2 px-3 py-0.5 text-xs font-semibold text-fg">
                         {c.name} · R$ {c.price.toFixed(2)}
                       </span>
                     ))}
@@ -192,30 +194,30 @@ export function LandingPage() {
               </Reveal>
             </div>
           ) : events === null ? (
-            <p className="text-center text-white/50">Carregando eventos...</p>
+            <p className="text-center text-fg-subtle">Carregando eventos...</p>
           ) : (
-            <p className="text-center text-white/50">Nenhum evento publicado no momento. Volte em breve!</p>
+            <p className="text-center text-fg-subtle">Nenhum evento publicado no momento. Volte em breve!</p>
           )}
         </div>
       </section>
 
       {/* OUTROS EVENTOS */}
       {others.length > 0 && (
-        <section id="eventos" className="border-b border-white/5 bg-surface py-24">
+        <section id="eventos" className="border-b border-border bg-surface py-24">
           <div className="mx-auto max-w-6xl px-6">
             <Reveal>
               <SectionLabel>Mais eventos</SectionLabel>
-              <h2 className="font-head text-4xl font-black uppercase text-white">Outros eventos abertos</h2>
+              <h2 className="font-head text-4xl font-black uppercase text-fg">Outros eventos abertos</h2>
             </Reveal>
             <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
               {others.map((event, i) => (
                 <Reveal key={event.id} delay={i * 80}>
                   <Link
                     to={`/eventos/${event.id}`}
-                    className="block h-full rounded-md border border-white/10 bg-ink p-6 transition hover:-translate-y-1 hover:border-brand-yellow"
+                    className="block h-full rounded-md border border-border bg-ink p-6 transition hover:-translate-y-1 hover:border-brand-yellow"
                   >
-                    <p className="font-head text-xl font-bold uppercase text-white">{event.name}</p>
-                    <p className="mt-1 text-sm text-white/50">
+                    <p className="font-head text-xl font-bold uppercase text-fg">{event.name}</p>
+                    <p className="mt-1 text-sm text-fg-subtle">
                       📅 {formatDate(event.eventDate)} · 📍 {event.city}/{event.state}
                     </p>
                     <p className="mt-4 text-sm font-semibold text-brand-yellow">
@@ -230,11 +232,11 @@ export function LandingPage() {
       )}
 
       {/* COMO FUNCIONA */}
-      <section id="como-funciona" className="border-b border-white/5 py-24">
+      <section id="como-funciona" className="border-b border-border py-24">
         <div className="mx-auto max-w-6xl px-6 text-center">
           <Reveal>
             <SectionLabel center>Como participar</SectionLabel>
-            <h2 className="font-head text-4xl font-black uppercase text-white">Simples assim</h2>
+            <h2 className="font-head text-4xl font-black uppercase text-fg">Simples assim</h2>
           </Reveal>
           <div className="mt-14 grid gap-10 md:grid-cols-3">
             {[
@@ -246,8 +248,8 @@ export function LandingPage() {
                 <div className="font-head mx-auto grid h-[72px] w-[72px] place-items-center rounded-full bg-brand-yellow text-3xl font-black text-black">
                   {step.n}
                 </div>
-                <p className="font-head mt-4 text-xl font-bold uppercase text-white">{step.title}</p>
-                <p className="mt-2 text-sm leading-relaxed text-white/50">{step.desc}</p>
+                <p className="font-head mt-4 text-xl font-bold uppercase text-fg">{step.title}</p>
+                <p className="mt-2 text-sm leading-relaxed text-fg-subtle">{step.desc}</p>
               </Reveal>
             ))}
           </div>
@@ -255,12 +257,12 @@ export function LandingPage() {
       </section>
 
       {/* PARA ATLETAS / ORGANIZADORES */}
-      <section className="border-b border-white/5 bg-surface py-24">
+      <section className="border-b border-border bg-surface py-24">
         <div className="mx-auto grid max-w-6xl gap-6 px-6 md:grid-cols-2">
-          <Reveal className="rounded-md border border-white/10 bg-ink p-10">
+          <Reveal className="rounded-md border border-border bg-ink p-10">
             <p className="text-3xl">🏃</p>
-            <h3 className="font-head mt-3 text-2xl font-black uppercase text-white">Sou atleta</h3>
-            <p className="mt-2 text-white/60">Encontre eventos, inscreva-se em uma categoria e acompanhe seu pagamento e resultado.</p>
+            <h3 className="font-head mt-3 text-2xl font-black uppercase text-fg">Sou atleta</h3>
+            <p className="mt-2 text-fg-muted">Encontre eventos, inscreva-se em uma categoria e acompanhe seu pagamento e resultado.</p>
             <Link
               to="/registrar"
               className="font-head mt-6 inline-block rounded-md bg-brand-yellow px-6 py-3 text-sm font-bold uppercase tracking-wide text-black hover:bg-brand-yellow-hover"
@@ -268,13 +270,13 @@ export function LandingPage() {
               Criar conta de atleta
             </Link>
           </Reveal>
-          <Reveal delay={100} className="rounded-md border border-white/10 bg-ink p-10">
+          <Reveal delay={100} className="rounded-md border border-border bg-ink p-10">
             <p className="text-3xl">🏆</p>
-            <h3 className="font-head mt-3 text-2xl font-black uppercase text-white">Sou organizador</h3>
-            <p className="mt-2 text-white/60">Publique seu evento, defina categorias e vagas, e acompanhe as inscrições.</p>
+            <h3 className="font-head mt-3 text-2xl font-black uppercase text-fg">Sou organizador</h3>
+            <p className="mt-2 text-fg-muted">Publique seu evento, defina categorias e vagas, e acompanhe as inscrições.</p>
             <Link
               to="/registrar"
-              className="font-head mt-6 inline-block rounded-md border border-white/20 px-6 py-3 text-sm font-bold uppercase tracking-wide text-white hover:border-brand-yellow hover:text-brand-yellow"
+              className="font-head mt-6 inline-block rounded-md border border-border px-6 py-3 text-sm font-bold uppercase tracking-wide text-fg hover:border-brand-yellow hover:text-brand-yellow"
             >
               Criar conta de organizador
             </Link>
@@ -286,10 +288,10 @@ export function LandingPage() {
       <section className="py-24 text-center">
         <div className="mx-auto max-w-2xl px-6">
           <Reveal>
-            <h2 className="font-head text-5xl font-black uppercase leading-tight text-white">
+            <h2 className="font-head text-5xl font-black uppercase leading-tight text-fg">
               Sua próxima corrida <br /> começa aqui.
             </h2>
-            <p className="mt-4 text-white/60">Crie sua conta gratuita e garanta sua vaga no próximo evento.</p>
+            <p className="mt-4 text-fg-muted">Crie sua conta gratuita e garanta sua vaga no próximo evento.</p>
             <div className="mt-8 flex flex-wrap justify-center gap-4">
               <Link
                 to="/registrar"
@@ -299,7 +301,7 @@ export function LandingPage() {
               </Link>
               <a
                 href="#eventos"
-                className="font-head rounded-md border-2 border-white/20 px-8 py-4 text-lg font-bold uppercase tracking-wide text-white hover:border-brand-yellow"
+                className="font-head rounded-md border-2 border-border px-8 py-4 text-lg font-bold uppercase tracking-wide text-fg hover:border-brand-yellow"
               >
                 Ver eventos
               </a>
@@ -309,10 +311,10 @@ export function LandingPage() {
       </section>
 
       {/* FOOTER */}
-      <footer className="border-t border-white/10 bg-surface py-12 text-white/50">
+      <footer className="border-t border-border bg-surface py-12 text-fg-subtle">
         <div className="mx-auto max-w-6xl px-6">
-          <div className="flex flex-wrap items-center justify-between gap-4 border-b border-white/10 pb-8">
-            <span className="font-head flex items-center gap-2 text-xl font-black uppercase text-white">
+          <div className="flex flex-wrap items-center justify-between gap-4 border-b border-border pb-8">
+            <span className="font-head flex items-center gap-2 text-xl font-black uppercase text-fg">
               <img src={logo} alt="UCD Runner" className="h-8 w-8 rounded-full" />
               UCD <span className="text-brand-yellow">RUNNER</span>
             </span>

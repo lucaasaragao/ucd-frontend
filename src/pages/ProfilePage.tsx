@@ -73,21 +73,21 @@ export function ProfilePage() {
 
   return (
     <div className="flex max-w-3xl flex-col gap-6">
-      <div className="flex items-center gap-4 rounded-md border border-white/10 bg-surface p-6">
+      <div className="flex items-center gap-4 rounded-md border border-border bg-surface p-6">
         <div className="font-head grid h-16 w-16 shrink-0 place-items-center rounded-full bg-brand-yellow text-2xl font-black text-black">
           {user.name.charAt(0).toUpperCase()}
         </div>
         <div>
-          <h2 className="font-head text-2xl font-bold text-white">{user.name}</h2>
-          <p className="text-sm text-white/50">{user.email}</p>
-          <span className="mt-1 inline-block rounded-full bg-white/10 px-2.5 py-0.5 text-xs font-semibold text-white/70">
+          <h2 className="font-head text-2xl font-bold text-fg">{user.name}</h2>
+          <p className="text-sm text-fg-subtle">{user.email}</p>
+          <span className="mt-1 inline-block rounded-full bg-surface-2 px-2.5 py-0.5 text-xs font-semibold text-fg-muted">
             {ROLE_LABEL[user.role] ?? user.role}
           </span>
         </div>
       </div>
 
       <Card>
-        <h3 className="font-head mb-4 text-lg font-bold text-white">Dados pessoais</h3>
+        <h3 className="font-head mb-4 text-lg font-bold text-fg">Dados pessoais</h3>
         <form onSubmit={handleProfileSubmit} className="grid gap-4 sm:grid-cols-2">
           <Field label="Nome">
             <Input required value={name} onChange={(e) => setName(e.target.value)} />
@@ -134,7 +134,7 @@ export function ProfilePage() {
       </Card>
 
       <Card>
-        <h3 className="font-head mb-4 text-lg font-bold text-white">Trocar senha</h3>
+        <h3 className="font-head mb-4 text-lg font-bold text-fg">Trocar senha</h3>
         <form onSubmit={handlePasswordSubmit} className="grid gap-4 sm:grid-cols-2">
           <Field label="Senha atual">
             <Input

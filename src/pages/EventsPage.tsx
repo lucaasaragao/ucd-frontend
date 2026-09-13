@@ -32,19 +32,19 @@ export function EventsPage() {
       .finally(() => setLoading(false))
   }, [])
 
-  if (loading) return <p aria-busy="true" className="text-white/50">Carregando eventos...</p>
+  if (loading) return <p aria-busy="true" className="text-fg-subtle">Carregando eventos...</p>
   if (error) return <p role="alert" className="text-red-400">{error}</p>
 
   return (
     <div>
       <div className="mb-6 flex items-center justify-between gap-2">
-        <h2 className="font-head text-2xl font-bold text-white">Eventos disponíveis</h2>
+        <h2 className="font-head text-2xl font-bold text-fg">Eventos disponíveis</h2>
         <span className="rounded-full bg-brand-yellow/10 px-3 py-1 text-sm font-semibold text-brand-yellow">
           {events.length} aberto{events.length === 1 ? '' : 's'}
         </span>
       </div>
       {events.length === 0 ? (
-        <p className="text-white/50">Nenhum evento publicado no momento. Volte em breve!</p>
+        <p className="text-fg-subtle">Nenhum evento publicado no momento. Volte em breve!</p>
       ) : (
         <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {events.map((event) => {
@@ -53,22 +53,22 @@ export function EventsPage() {
               <li key={event.id}>
                 <Link
                   to={`/eventos/${event.id}`}
-                  className="block h-full rounded-md border border-white/10 bg-surface p-5 transition hover:-translate-y-0.5 hover:border-brand-yellow"
+                  className="block h-full rounded-md border border-border bg-surface p-5 transition hover:-translate-y-0.5 hover:border-brand-yellow"
                 >
                   <div className="flex items-start justify-between gap-2">
                     <div className="flex items-center gap-2">
                       <span className="text-2xl">{EVENT_TYPE_ICON[event.eventType] ?? '🏁'}</span>
-                      <h3 className="font-head text-lg font-bold text-white">{event.name}</h3>
+                      <h3 className="font-head text-lg font-bold text-fg">{event.name}</h3>
                     </div>
-                    <span className="shrink-0 rounded-full bg-white/5 px-2.5 py-1 text-xs font-semibold text-white/60">
+                    <span className="shrink-0 rounded-full bg-hover px-2.5 py-1 text-xs font-semibold text-fg-muted">
                       {event.eventDate}
                     </span>
                   </div>
-                  <p className="mt-2 text-sm text-white/50">
+                  <p className="mt-2 text-sm text-fg-subtle">
                     📍 {event.city}/{event.state} · {EVENT_TYPE_LABEL[event.eventType] ?? event.eventType}
                   </p>
-                  <div className="mt-4 flex items-center justify-between border-t border-white/10 pt-3 text-sm">
-                    <span className="font-medium text-white/60">
+                  <div className="mt-4 flex items-center justify-between border-t border-border pt-3 text-sm">
+                    <span className="font-medium text-fg-muted">
                       {event.categories.length} categoria{event.categories.length === 1 ? '' : 's'}
                     </span>
                     {price !== null && (

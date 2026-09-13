@@ -29,12 +29,12 @@ export function LoginPage() {
   return (
     <div className="grid min-h-screen place-items-center bg-ink px-4">
       <div className="w-full max-w-sm">
-        <Link to="/" className="font-head mb-8 flex items-center justify-center gap-2 text-xl font-bold text-white">
+        <Link to="/" className="font-head mb-8 flex items-center justify-center gap-2 text-xl font-bold text-fg">
           <img src={logo} alt="UCD Runner" className="h-9 w-9 rounded-full" />
           UCD <span className="text-brand-yellow">RUNNER</span>
         </Link>
-        <div className="rounded-md border border-white/10 bg-surface p-6">
-          <h1 className="font-head mb-6 text-2xl font-bold text-white">Entrar</h1>
+        <div className="rounded-md border border-border bg-surface p-6">
+          <h1 className="font-head mb-6 text-2xl font-bold text-fg">Entrar</h1>
           <form onSubmit={handleSubmit} className="flex flex-col gap-4">
             <Field label="Email">
               <Input type="email" required value={email} onChange={(e) => setEmail(e.target.value)} />
@@ -51,7 +51,7 @@ export function LoginPage() {
               {loading ? 'Entrando...' : 'Entrar'}
             </Button>
           </form>
-          <p className="mt-4 text-sm text-white/50">
+          <p className="mt-4 text-sm text-fg-subtle">
             Não tem conta?{' '}
             <Link to="/registrar" className="font-medium text-brand-yellow hover:underline">
               Criar conta

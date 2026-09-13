@@ -3,19 +3,37 @@
 @theme {
   --font-head: 'Exo 2', ui-sans-serif, system-ui, sans-serif;
   --font-body: 'Exo 2', ui-sans-serif, system-ui, sans-serif;
-  /* Paleta extraida do logo real de @ucd.runner (Instagram), sobre fundo escuro premium */
+  /* Paleta da marca (extraida do logo real de @ucd.runner): fixa nos dois temas */
   --color-brand-blue: #0d55c4;
   --color-brand-blue-dark: #0a2a6b;
   --color-brand-yellow: #f0b90d;
   --color-brand-yellow-hover: #d9a70b;
+
+  /* Tokens de tema: valores padrao = escuro. Sobrescritos em [data-theme="light"] abaixo. */
   --color-ink: #0a0a0c;
   --color-surface: #16161a;
   --color-surface-2: #1e1e24;
+  --color-fg: #ffffff;
+  --color-fg-muted: rgb(255 255 255 / 65%);
+  --color-fg-subtle: rgb(255 255 255 / 45%);
+  --color-border: rgb(255 255 255 / 10%);
+  --color-hover: rgb(255 255 255 / 6%);
+}
+
+:root[data-theme='light'] {
+  --color-ink: #ffffff;
+  --color-surface: #f4f6fa;
+  --color-surface-2: #e8ecf5;
+  --color-fg: #0a0a0c;
+  --color-fg-muted: rgb(10 10 12 / 65%);
+  --color-fg-subtle: rgb(10 10 12 / 45%);
+  --color-border: rgb(10 10 12 / 10%);
+  --color-hover: rgb(10 10 12 / 5%);
 }
 
 body {
   margin: 0;
-  color-scheme: dark;
   font-family: var(--font-body);
   background: var(--color-ink);
+  color: var(--color-fg);
 }
